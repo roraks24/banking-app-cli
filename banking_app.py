@@ -10,7 +10,8 @@ def create_account():
         'name' : user,
         'account number' : num,
         'pin' : pin,
-        'balance' : 0
+        'balance' : 0,
+        'history' : []
     }
 
 
@@ -36,6 +37,7 @@ def deposit():
     if num in accounts and pin == accounts[num]["pin"]:
      dep = int(input("Enter amount: "))
      accounts[num]["balance"] += dep
+     accounts[num]["history"].append(f"Deposited {dep}")
      
     else:
         print("Wrong number or PIN!!")
@@ -47,17 +49,27 @@ def withdraw():
     if num in accounts and pin == accounts[num]["pin"]:
        withd = int(input("Enter amount: "))
        accounts[num]["balance"] -= withd
+       accounts[num]["history"].append(f"Withdrawn {withd}") 
 
     else:
         print("Wrong number or PIN!!")
-       
+
+def transaction_history():
+   num = int(input("Enter your contact number: "))        
+   pin = int(input("Enter PIN: "))        
+
+   if num in accounts and pin == accounts[num]["pin"]:
+      print("Transaction History:")
+      for i in accounts[num]["history"]:
+         print(i)
 
 while True:
     print("1. Create Account")
     print("2. Check Balance")
     print("3. Deposit")
     print("4. Withdraw")
-    print("5. Quit")
+    print("5. Transaction History")
+    print("6. Quit")
     
     choice = int(input("Enter Choice: "))
 
@@ -74,6 +86,9 @@ while True:
        withdraw()
 
     elif choice == 5:
+       transaction_history()
+    
+    elif choice == 6:
        break
 
     else:

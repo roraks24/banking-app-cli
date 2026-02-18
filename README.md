@@ -8,7 +8,6 @@ A command-line based banking system built using Python.
 - Deposit & withdraw
 - Balance check
 - Transaction history
-- Authentication with 3 attempt limit
 
 ## Technologies Used
 - Python
